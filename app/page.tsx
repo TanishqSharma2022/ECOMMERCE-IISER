@@ -10,7 +10,7 @@ import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { ChevronRightIcon, XMarkIcon } from "@heroicons/react/20/solid";
 
 import Link from "next/link";
-import Products from "./components/Products";
+import Products from "@/app/components/Products";
 
 
 

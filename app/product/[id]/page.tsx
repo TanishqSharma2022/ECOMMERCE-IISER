@@ -1,8 +1,6 @@
 "use client";
 
-import { RadioGroup } from "@headlessui/react";
-import { StarIcon } from "@heroicons/react/20/solid";
-import { usePathname, useRouter } from "next/navigation";
+
 import { use } from "react";
 
 function classNames(...classes: any) {

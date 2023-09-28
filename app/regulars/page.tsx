@@ -1,7 +1,7 @@
 "use client"
 
 import { use } from "react";
-import Products from "../components/Products";
+import Products from "@/app/components/Products";
 
 const Regulars =  () => {
 
