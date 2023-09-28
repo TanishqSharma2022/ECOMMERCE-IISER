@@ -228,7 +228,7 @@ export default function Id({ params }: any) {
 
 async function getProduct(id: string) {
 
-  const resp = await fetch(`https://ecommerce-iiser/api/products/${id}`);
+  const resp = await fetch(`http://localhost:3000/api/products/${id}`);
   const data = await resp.json();
 
   return data.product;
