@@ -4,31 +4,13 @@ import React, {
   Fragment,
   useState,
   useEffect,
-  useRef,
   use,
-  Suspense,
 } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { ChevronRightIcon, XMarkIcon } from "@heroicons/react/20/solid";
-import {
-  ChevronDownIcon,
-  FunnelIcon,
-  MinusIcon,
-  PlusIcon,
-  Squares2X2Icon,
-} from "@heroicons/react/20/solid";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
-// const Products = dynamic(() => import('./components/Products'), {ssr: false})
 import Products from "./components/Products";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-
 
 
 
@@ -336,3 +318,6 @@ async function getDetails() {
   return details.product;
 }
 
+
+
+export const runtime = "edge"

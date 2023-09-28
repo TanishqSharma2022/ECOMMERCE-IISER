@@ -236,3 +236,7 @@ async function getProduct(id: string) {
 
   return data.product;
 }
+
+
+
+export const runtime = "edge"
