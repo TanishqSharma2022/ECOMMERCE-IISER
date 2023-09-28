@@ -28,7 +28,7 @@ console.log(products)
                     </div>
                   </div>
             <div className="p-4 w-full ">
-    <h1> new items</h1>
+              <h1> new items</h1>
                   </div>
 
         </>
@@ -42,7 +42,7 @@ export default IISERB
 
 async function getProduct() {
 
-    const dresp = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_PATH}/api/products/iiserb`, {next: {revalidate: 1}});
+    const dresp = await fetch(`http://localhost:3000/api/products/iiserb`, {next: {revalidate: 1}});
     const details = await dresp.json();
     return details.product;
   }

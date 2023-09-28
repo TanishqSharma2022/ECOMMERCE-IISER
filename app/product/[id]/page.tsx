@@ -230,10 +230,9 @@ export default function Id({ params }: any) {
 
 async function getProduct(id: string) {
   const resp = await fetch(
-    `https://ecommerce-iiserb.vercel.app/api/products/${id}`
+    `http://localhost:3000/api/products/${id}`
   );
   const data = await resp.json();
 
-  // console.log(data.product)
   return data.product;
 }

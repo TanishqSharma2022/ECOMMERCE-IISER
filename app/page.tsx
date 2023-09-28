@@ -322,7 +322,7 @@ if(product_details != null)  {
 
 async function getProducts() {
 
-  const resp = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_PATH}/api/products`, {next: {revalidate: 10}});
+  const resp = await fetch(`http://localhost:3000/api/products`, {next: {revalidate: 10}});
   const data = await resp.json();
   return data.product;
 }
@@ -331,7 +331,7 @@ async function getProducts() {
 
 async function getDetails() {
 
-  const dresp = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_PATH}/api/products/details`, {next: {revalidate: 1}});
+  const dresp = await fetch(`http://localhost:3000/api/products/details`, {next: {revalidate: 1}});
   const details = await dresp.json();
   return details.product;
 }

@@ -41,7 +41,7 @@ export default IISERB
 
 async function getProduct() {
 
-    const dresp = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_PATH}/api/products/regulars`, {next: {revalidate: 1}});
+    const dresp = await fetch(`http://localhost:3000/api/products/regulars`, {next: {revalidate: 1}});
     const details = await dresp.json();
     return details.product;
   }
