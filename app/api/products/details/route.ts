@@ -9,7 +9,6 @@ export async function GET(){
 
     const color = await product_model.distinct('color');
     const price = await product_model.distinct('price')
-    // const category = await product_model.distinct('price')
 
     const product = {color, price}
     return NextResponse.json({ product });
