@@ -3,12 +3,9 @@ const nextConfig = {
 
   reactStrictMode: true,
   env: {
-    LOCAL_PATH: process.env.LOCAL_PATH,
+    LOCAL_PATH: "https://ecommerce-iiser.vercel.app",
   },
-  experimental:{
-    isrMemoryCacheSize: 0,
-  }
-  ,
+  
 
 
 
