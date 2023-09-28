@@ -3,7 +3,7 @@
 import { use } from "react";
 import Products from "../components/Products";
 
-const IISERB =  () => {
+const Regulars =  () => {
 
     const products = use(getProduct())
     return(
@@ -34,7 +34,7 @@ const IISERB =  () => {
     )
 }
 
-export default IISERB
+export default Regulars
 
 
 
