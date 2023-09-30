@@ -10,6 +10,8 @@ const dbConnect = async() => {
     }catch(error){
         console.log(error)
     }
+
+    mongoose.connection.close()
 }
 
 export default dbConnect;
