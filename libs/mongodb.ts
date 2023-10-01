@@ -11,7 +11,8 @@ const dbConnect = async() => {
         console.log(error)
     }
 
-    mongoose.connection.close()
+    // mongoose.connection.close()
+    mongoose.disconnect()
 }
 
 export default dbConnect;
