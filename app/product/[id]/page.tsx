@@ -235,7 +235,3 @@ async function getProduct(id: string) {
 }
 
 
-
-export const config = {
-  runtime: "edge"
-}
