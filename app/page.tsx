@@ -319,3 +319,4 @@ async function getDetails() {
 }
 
 
+export const dynamic = "force-dynamic"

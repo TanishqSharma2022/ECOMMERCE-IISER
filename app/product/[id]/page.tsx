@@ -235,3 +235,7 @@ async function getProduct(id: string) {
 }
 
 
+
+
+
+export const dynamic = "force-dynamic"
