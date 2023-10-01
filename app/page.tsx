@@ -319,5 +319,3 @@ async function getDetails() {
 }
 
 
-
-export const runtime = "edge"
