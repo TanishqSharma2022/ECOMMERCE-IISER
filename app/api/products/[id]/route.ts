@@ -1,6 +1,6 @@
 import dbConnect from "@/libs/mongodb";
 import product_model from "@/models/product_model"
-import mongoose from "mongoose";
+import mongoose, { connection } from "mongoose";
 import { NextResponse } from "next/server";
 
 export async function GET(req:any, {params}:any){
@@ -8,7 +8,7 @@ export async function GET(req:any, {params}:any){
     await dbConnect();
     const product = await product_model.findById(id);
 
-    mongoose.disconnect()
+
     return NextResponse.json({ product }, {status: 200});
 
 

@@ -6,6 +6,6 @@ import { NextResponse } from "next/server";
 export async function GET(){
     await dbConnect();
     const product = await product_model.find(({href: 'iiserb'}));
-    mongoose.disconnect()
+    // mongoose.disconnect()
     return NextResponse.json({ product });
 }

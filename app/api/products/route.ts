@@ -1,5 +1,6 @@
 import dbConnect from "@/libs/mongodb";
 import product_model from "@/models/product_model"
+import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
 export async function POST(req:any){
@@ -35,4 +36,6 @@ export async function GET(){
     await dbConnect();
     const product = await product_model.find();
     return NextResponse.json({ product });
+
+
 }
