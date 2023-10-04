@@ -223,7 +223,7 @@ export default function Id({ params }: any) {
 
 async function getProduct(id: string) {
 
-  const resp = await fetch(`http://127.0.0.1:3000/api/products/${id}`, {next: {revalidate: 1}});
+  const resp = await fetch(`http://localhost:3000/api/products/${id}`, {next: {revalidate: 1}});
   const data = await resp.json();
 
   return data.product;

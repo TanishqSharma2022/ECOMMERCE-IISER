@@ -4,6 +4,6 @@ import { NextResponse } from "next/server";
 
 export async function GET(){
     await dbConnect();
-    const product = await product_model.find(({href: 'regular'}));
+    const product = await product_model.find(({categoryId: 'regular'}));
     return NextResponse.json({ product });
 }

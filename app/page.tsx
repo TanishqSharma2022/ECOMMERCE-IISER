@@ -229,8 +229,8 @@ export default function Example() {
 
 async function getProducts() {
 
-  const resp = await fetch(`http://127.0.0.1:3000/api/products`, {next: {revalidate: 10}});
-  const dresp = await fetch(`http://127.0.0.1:3000/api/products/details`, {next: {revalidate: 1}});
+  const resp = await fetch(`http://localhost:3000/api/products`, {next: {revalidate: 10}});
+  const dresp = await fetch(`http://localhost:3000/api/products/details`, {next: {revalidate: 1}});
   
   const details = await dresp.json();
 
@@ -240,12 +240,12 @@ async function getProducts() {
 
 
 
-async function getDetails() {
+// async function getDetails() {
 
-  const dresp = await fetch(`http://127.0.0.1:3000/api/products/details`, {next: {revalidate: 1}});
-  const details = await dresp.json();
-  return details.product;
-}
+//   const dresp = await fetch(`http://127.0.0.1:3000/api/products/details`, {next: {revalidate: 1}});
+//   const details = await dresp.json();
+//   return details.product;
+// }
 
 
 export const dynamic = "force-dynamic"
