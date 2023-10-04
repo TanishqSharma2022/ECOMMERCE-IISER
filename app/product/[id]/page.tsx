@@ -11,6 +11,7 @@ export default function Id({ params }: any) {
   const { id } = params;
 
   const product = use(getProduct(id));
+  console.log(product)
 
   return (
     <>
@@ -19,15 +20,13 @@ export default function Id({ params }: any) {
           {/* Image gallery */}
             <div className="aspect-h-4 aspect-w-3 max-w-md overflow-hidden  rounded-lg flex gap-x-3">
               <img
-                src={product.imageSrc}
-                alt={product.imageAlt}
+                src={product.images[0].url}
                 className="h-full w-full object-cover object-center"
               />
               </div>
             <div className="aspect-h-4 aspect-w-3 max-w-md overflow-hidden border hidden rounded-lg lg:flex">
                <img
-                src={product.imageSrc}
-                alt={product.imageAlt}
+                src={product.images[1].url}
                 className="h-full w-full object-cover object-center"
               />
           </div>
@@ -100,30 +99,27 @@ export default function Id({ params }: any) {
                 <h3 className="sr-only">Description</h3>
 
                 <div className="space-y-6">
-
-                  <p className="text-base text-gray-900">{product.desc}</p>
+                <h3 className="text-sm font-medium text-gray-900">
+                  Description
+                </h3>
+                  <p className="text-base text-gray-900">{product.description}</p>
                 </div>
               </div>
 
-              <div className="mt-10">
-                <h3 className="text-sm font-medium text-gray-900">
-                  Highlights
-                </h3>
-              </div>
+           
             </div>
           </div>
         </div>
 
 
         {/* SUGGESTED ITEMS */}
-
+{/* 
         <div className="p-6 border h-full py-5">
           <h1 className="font-sans font-bold text-3xl py-5">Suggested Products</h1>
           <div className=" lg:flex  grid grid-cols-2  gap-6 p-2 border">
           <div className="  max-w-lg    lg:w-[20%] w-40%  ">
               <img
-                src={product.imageSrc}
-                alt={product.imageAlt}
+                src={product.images[0].url}
                 className="max-w-7 w-full object-cover object-center"
               />
               <div className="p-3 flex-col items-center">
@@ -135,14 +131,14 @@ export default function Id({ params }: any) {
                 
                 {product.price}</p>
               </div>
-              <p className="text-sm font-medium  text-gray-900">{product.color}</p>
+              <p className="text-sm font-medium  text-gray-900">{product.colorId}</p>
               </div>
               </div>
               
               <div className="  max-w-lg  lg:w-[20%] w-40%  ">
               <img
-                src={product.imageSrc}
-                alt={product.imageAlt}
+                src={product.images[1].url}
+  
                 className="max-w-7 w-full object-cover object-center"
               />
               <div className="p-3 flex-col items-center">
@@ -154,14 +150,13 @@ export default function Id({ params }: any) {
                 
                 {product.price}</p>
               </div>
-              <p className="text-sm font-medium text-gray-900">{product.color}</p>
+              <p className="text-sm font-medium text-gray-900">{product.colorId}</p>
               </div>
               </div>
 
               <div className="  max-w-lg   lg:w-[20%] w-40%  ">
               <img
                 src={product.imageSrc}
-                alt={product.imageAlt}
                 className="max-w-7 w-full object-cover object-center"
               />
               <div className="p-3 flex-col items-center">
@@ -173,7 +168,7 @@ export default function Id({ params }: any) {
                 
                 {product.price}</p>
               </div>
-              <p className="text-sm font-medium text-gray-900">{product.color}</p>
+              <p className="text-sm font-medium text-gray-900">{product.colorId}</p>
               </div>
               </div>
               
@@ -215,7 +210,7 @@ export default function Id({ params }: any) {
               </div>
               </div>
           </div>
-        </div>
+        </div> */}
 
 
       </div>

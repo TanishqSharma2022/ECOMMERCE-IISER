@@ -11,8 +11,15 @@ import { ChevronRightIcon, XMarkIcon } from "@heroicons/react/20/solid";
 
 import Link from "next/link";
 import Products from "@/app/components/Products";
+import { ChevronUpIcon } from "@heroicons/react/24/outline";
 
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 
 
@@ -30,16 +37,9 @@ export default function Example() {
 
   const product_list = use(getProducts());
 
-
 // details are coming from server thats why late also no data on initial render 
-  const product_details = use(getDetails()) 
+  const product_details = product_list[1] 
   const [loading, setLoading] = useState(true)
-
-console.log(product_details)
-if(product_details != null)  {
-  useEffect(() => {
-    setLoading(true)
-  }, [])}
 
 
  
@@ -61,6 +61,7 @@ if(product_details != null)  {
             </button>
             </Link>
           </div>
+          
           <div className="md:w-[50%] h-full w=[100%] bg-gray-200 flex flex-col justify-center items-center">
             <a className="text-4xl font-bold p-8">REGULARS</a>
             <Link href="/regulars">
@@ -121,6 +122,7 @@ if(product_details != null)  {
                 </div>
               </Dialog>
             </Transition.Root>
+            
 
             <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
@@ -140,12 +142,13 @@ if(product_details != null)  {
                 </h2>
 
                 <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-                  <div className="Categories divide-y">
+                  <div className="Categories divide-y mx-auto w-full max-w-md rounded-2xl  p-2 ">
+                  
                     <Disclosure>
                       {({ open }) => (
 
                         <div>
-                          <Disclosure.Button className="w-full items-center flex justify-between py-4 ">
+                          <Disclosure.Button className="w-full items-center flex justify-between p-4 rounded-lg bg-muted">
                             Colors
                             <ChevronRightIcon
                               width={30}
@@ -156,11 +159,11 @@ if(product_details != null)  {
                                    
 
 
-                          <Disclosure.Panel  className="flex flex-col p-4">
+                          <Disclosure.Panel static className="flex flex-col p-4">
                             {product_details && product_details.color.map((clr: any, index:any) => {
                               return (
                                 <div key={index} className="flex  items-center">
-                                      <a className="mx-4">{clr}</a>
+                                      <input type="checkbox" /><a className="mx-4 capitalize">{clr}</a>
                                 </div>
                               );
                             })}
@@ -168,43 +171,22 @@ if(product_details != null)  {
                         </div>
                       )}
                     </Disclosure>
-                    <Disclosure>
-                      {({ open }) => (
+                    
+                   
 
-                        <div>
-                          <Disclosure.Button className="w-full items-center flex justify-between py-4 ">
-                            Categories
-                            <ChevronRightIcon
-                              width={30}
-                              className={open ? "rotate-90 transform" : ""}
-                            />
-                          </Disclosure.Button>
-                          <Disclosure.Panel className="flex flex-col p-4">
-                            {categories.map((category, index) => {
-                              return (
-                                <div key={index} className="flex  items-center">
-                                  <input type="checkbox" />
-                                  <a className="mx-4">{category}</a>
-                                </div>
-                              );
-                            })}
-                          </Disclosure.Panel>
-                        </div>
-                      )}
-                    </Disclosure>
 
                     <Disclosure as="div">
                       {({ open }) => (
 
                         <div>
-                          <Disclosure.Button className="w-full items-center flex justify-between py-4">
+                          <Disclosure.Button className="w-full items-center flex justify-between p-4 bg-muted">
                             Prices
                             <ChevronRightIcon
                               width={30}
                               className={open ? "rotate-90 transform" : ""}
                             />
                           </Disclosure.Button>
-                          <Disclosure.Panel  className="flex flex-col p-4">
+                          <Disclosure.Panel static className="flex flex-col p-4">
                             {!product_details && <p>Loading</p>}
                             {product_details && product_details.price.map((price: any, index:any) => {
                               return (
@@ -223,7 +205,7 @@ if(product_details != null)  {
                     <div className="bg-white">
                       <div className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
                         <div className="   mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                          {product_list.map((product: any) => {
+                          {product_list[0].map((product: any) => {
                             return (
                               <div className=" " key={product._id}>
                                 <Products {...product} />
@@ -248,8 +230,12 @@ if(product_details != null)  {
 async function getProducts() {
 
   const resp = await fetch(`http://127.0.0.1:3000/api/products`, {next: {revalidate: 10}});
+  const dresp = await fetch(`http://127.0.0.1:3000/api/products/details`, {next: {revalidate: 1}});
+  
+  const details = await dresp.json();
+
   const data = await resp.json();
-  return data.product;
+  return [data.product, details.product];
 }
 
 

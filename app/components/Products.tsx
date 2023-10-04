@@ -16,15 +16,18 @@ import React, { Suspense, use} from "react";
 interface ProductProps{
   _id: string, 
   name: string,
-  href: string, 
-  imageSrc: string,
-  imageAlt: string, 
+  categoryId: string, 
+  images: Array<image>,
   price: string,
-  color: string, 
-  desc: string,
+  colorId: string, 
+  description: string,
 
 }
 
+interface image{
+  url: string,
+  id: string
+}
 
 
 const Products: React.FC<ProductProps>  = (props) =>  {
@@ -39,6 +42,7 @@ const Products: React.FC<ProductProps>  = (props) =>  {
 //   function removeDupli(arr){
 //     return [...new Set(arr)]
 //   }
+console.log(props.images[0].url)
 
 // console.log(removeDupli(colors))
 
@@ -53,8 +57,7 @@ const Products: React.FC<ProductProps>  = (props) =>  {
                   <div key={props._id} className="group relative">
                     <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden border border-white rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80 group-hover:border-gray-200">
                       <img
-                        src={props.imageSrc}
-                        alt={props.imageAlt}            
+                        src={props.images[0].url}        
                         className=" h-full w-full object-cover object-center lg:h-full lg:w-full"
                       />
                     </div>
@@ -70,7 +73,7 @@ const Products: React.FC<ProductProps>  = (props) =>  {
                           </Link>
                         </h3>
                         <p className="mt-1 text-sm text-gray-500">
-                          {props.color}
+                          {props.colorId}
                         </p>
                       </div>
                       <p className="text-sm font-medium text-gray-900">
