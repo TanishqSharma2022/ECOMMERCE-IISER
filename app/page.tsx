@@ -39,6 +39,7 @@ export default function Example() {
 
 // details are coming from server thats why late also no data on initial render 
   const product_details = product_list[1] 
+
   const [loading, setLoading] = useState(true)
 
 
@@ -188,7 +189,7 @@ export default function Example() {
                           </Disclosure.Button>
                           <Disclosure.Panel static className="flex flex-col p-4">
                             {!product_details && <p>Loading</p>}
-                            {product_details && product_details.price.map((price: any, index:any) => {
+                            {product_details.price.map((price: any, index:any) => {
                               return (
                                 <div key={index} className="flex  items-center">
                                   <input type="checkbox" />
@@ -229,11 +230,9 @@ export default function Example() {
 
 async function getProducts() {
 
-  const resp = await fetch(`http://localhost:3000/api/products`, {next: {revalidate: 10}});
-  const dresp = await fetch(`http://localhost:3000/api/products/details`, {next: {revalidate: 1}});
-  
+  const resp = await fetch(`https://ecommerce-iiser.vercel.app/api/products`, {next: {revalidate: 10}});
+  const dresp = await fetch(`https://ecommerce-iiser.vercel.app/api/products/details`, {next: {revalidate: 1}});
   const details = await dresp.json();
-
   const data = await resp.json();
   return [data.product, details.product];
 }

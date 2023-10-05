@@ -45,7 +45,7 @@ export default Iiserb
 async function getProduct() {
 
 
-    const dresp = await fetch(`http://localhost:3000/api/products/iiserb`, { cache: "no-store", next: {revalidate: 1}});
+    const dresp = await fetch(`https://ecommerce-iiser.vercel.app/api/products/iiserb`, { cache: "no-store", next: {revalidate: 1}});
     const details = await dresp.json();
     return details.product;
   }

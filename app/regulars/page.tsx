@@ -51,7 +51,7 @@ export default Regulars
 async function getProduct() {
 
 
-    const dresp = await fetch(`http://127.0.0.1:3000/api/products/regulars`, {next: {revalidate: 1}});
+    const dresp = await fetch(`https://ecommerce-iiser.vercel.app/api/products/regulars`, {next: {revalidate: 1}});
     const details = await dresp.json();
     return details.product;
   }
