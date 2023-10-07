@@ -54,11 +54,11 @@ console.log(props.images[0].url)
 
 
 
-                  <div key={props._id} className="group relative">
-                    <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden border border-white rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80 group-hover:border-gray-200">
+                  <div key={props._id} className="group relative ">
+                    <div className="w-[100%] overflow-hidden border border-white rounded-md bg-muted group-hover:brightness-75 lg:h-auto group-hover:border-gray-200">
                       <img
                         src={props.images[0].url}        
-                        className=" h-full w-full object-cover object-center lg:h-full lg:w-full"
+                        className=" h-full w-full  object-contain lg:h-full lg:w-full"
                       />
                     </div>
                     <div className="mt-4 flex justify-between">

@@ -3,9 +3,15 @@
 
 import { use } from "react";
 
+import { CarouselDefault } from "./CarouselDefault";
+
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
+
+
+
+
 
 export default function Id({ params }: any) {
   const { id } = params;
@@ -17,18 +23,8 @@ export default function Id({ params }: any) {
       <div className="bg-white py-4 border border-black">
         <div className="px-12 flex flex-col justify-center lg:flex-row lg:justify-center  items-center gap-x-5">
           {/* Image gallery */}
-            <div className="aspect-h-4 aspect-w-3 max-w-md overflow-hidden  rounded-lg flex gap-x-3">
-              <img
-                src={product.images[0].url}
-                className="h-full w-full object-cover object-center"
-              />
-              </div>
-            <div className="aspect-h-4 aspect-w-3 max-w-md overflow-hidden border hidden rounded-lg lg:flex">
-               <img
-                src={product.images[1].url}
-                className="h-full w-full object-cover object-center"
-              />
-          </div>
+              <CarouselDefault images={product.images} />
+
 
           {/* Product info */}
           <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:flex lg:max-w-7xl  w-[100%]  flex-col">
@@ -77,8 +73,6 @@ export default function Id({ params }: any) {
                     <button className="rounded p-2 border  hover:border-black">XL</button>
                     <button className="rounded p-2 border hover:border-black">XXL</button>
                     <button className="rounded p-2 border hover:border-black ">XXXL</button>
-
-
                   </div>
                 </div>
               
