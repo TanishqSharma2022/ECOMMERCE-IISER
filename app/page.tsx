@@ -205,7 +205,7 @@ export default function Example() {
                   <div className="md:col-span-3 border  ">
                     <div className="bg-white">
                       <div className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
-                        <div className="   mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                        <div className="   mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 p-10">
                           {product_list[0].map((product: any) => {
                             return (
                               <div className=" " key={product._id}>

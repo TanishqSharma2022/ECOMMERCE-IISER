@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrpe:wght@400;500;600;700&display=swap');
 
 
 
@@ -7,6 +8,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
  
 @layer base {
   :root {
@@ -83,5 +85,5 @@
 
 
 html, body, :root{
-  font-family: "Inter";
+  font-family: "Manrope";
 }

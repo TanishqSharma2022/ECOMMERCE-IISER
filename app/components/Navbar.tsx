@@ -5,36 +5,42 @@ import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, ShoppingBagIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const navigation = [
-    { name: 'Featured', href: '#' },
-    { name: 'Men', href: '#' },
-    { name: 'Women', href: '#' },
-    { name: 'About', href: '#' },
+  { name: 'HOME', href: '/' },
+    { name: 'IISERB MERCH', href: '/iiserb' },
+    { name: 'REGULARS', href: '/regulars' },
+    { name: 'ABOUT', href: '#' },
+    { name: 'CONTACT', href: '#' },
   ]
+
+
 
 const Navbar = () => {
 
       const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     return(
-        <div className='bg-red'>
-        <header className='w-full bg-gray-500 p-3 text-white flex items-center justify-between'>
+        <div className=' '>
+        {/* <header className='w-full bg-gray-500 p-3 text-white flex items-center justify-between'>
         <div>Logo</div>
         <ul className='flex mx-4 items-center'>
             <li className='mr-2 font-sans'>Sign in</li> 
             <span className='mr-2'>|</span>
             <li>Create an account</li>
         </ul>
-      </header>
-      <nav className='w-full border border-black p-4 flex justify-between items-center'>
+      </header> */}
+      <nav className='w-full border p-4 flex justify-between items-center'>
         <div>LOGO</div>
         <div className='  hidden lg:flex '>
-          <ul className='flex items-center gap-x-8'>
-            <li>Features</li>
-            <li>IISERB MERCH</li>
-            <li>Regulars</li>
-            <li>About</li>
+          <ul className='flex items-center gap-x-8  font-sans font-semibold'>
+          <Link href="/"><li className='cursor-pointer'>HOME</li></Link>
+            <Link href="/iiserb"><li className='cursor-pointer'>IISERB MERCH</li></Link>
+            <Link href="/regulars"><li className='cursor-pointer'>REGULARS</li></Link>
+            <Link href="/"><li className='cursor-pointer'>ABOUT</li></Link>
+            <Link href="/"><li className='cursor-pointer'>CONTACT</li></Link>
+
           </ul>
         </div>
         

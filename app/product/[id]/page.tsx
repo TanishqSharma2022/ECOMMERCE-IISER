@@ -11,7 +11,6 @@ export default function Id({ params }: any) {
   const { id } = params;
 
   const product = use(getProduct(id));
-  console.log(product)
 
   return (
     <>

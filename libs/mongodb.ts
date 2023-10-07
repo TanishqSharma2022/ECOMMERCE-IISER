@@ -5,8 +5,9 @@ const dbConnect = async() => {
         return 
     }
     try{
-         mongoose.connect(process.env.DB_URI!)
+        mongoose.connect(process.env.DB_URI!)
         console.log("connected")
+        console.log("NEW CONNECTION MADE....")
     }catch(error){
         console.log(error)
     }

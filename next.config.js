@@ -7,7 +7,9 @@ const nextConfig = {
   },
   
 
-
+images:{
+  domains: ['media.giphy.com'],
+},
 
     async headers() {
         return [
