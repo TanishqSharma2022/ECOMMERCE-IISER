@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -10,6 +10,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import useCart from "@/hooks/use-cart";
 
 const navigation = [
   { name: "HOME", href: "/" },
@@ -21,6 +22,20 @@ const navigation = [
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const cart = useCart()
+
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
+
+
 
   return (
     <div className=" ">
@@ -71,7 +86,7 @@ const Navbar = () => {
                 <Link href="/cart">
                   <div className="flex justify-between gap-x-2 items-center">
                     <ShoppingBagIcon className="h-6 w-6" />
-                    <span>0</span>
+                    <span>{cart.items.length}</span>
                   </div>
                 </Link>
               </button>

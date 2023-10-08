@@ -1,32 +1,14 @@
 "use client";
 
-import React, {
-  Fragment,
-  useState,
-  useEffect,
-  use,
-} from "react";
+import React, { Fragment, useState, useEffect, use, useRef } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { ChevronRightIcon, XMarkIcon } from "@heroicons/react/20/solid";
 
 import Link from "next/link";
 import Products from "@/app/components/Products";
-import { ChevronUpIcon } from "@heroicons/react/24/outline";
 
-
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-
-
-
-
-
-
-
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -36,39 +18,30 @@ export default function Example() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const product_list = use(getProducts());
-
-// details are coming from server thats why late also no data on initial render 
-  const product_details = product_list[1] 
-
-  const [loading, setLoading] = useState(true)
-
-
- 
-
- 
-
-
-  const categories = ["IISERB MERCH", "REGULAR TSHIRTS"];
+  const products_by_date = product_list[0].reverse()
+  // details are coming from server thats why late also no data on initial render
+  const product_details = product_list[1];
 
   return (
     <>
       <div>
+      
         <div className="hero-section h-[80vh] md:h-[60vh] flex flex-col md:flex-row ">
           <div className="md:w-[50%] w=[100%] h-full iiserb_hero flex flex-col justify-center items-center">
             <a className="text-4xl font-bold p-8">IISERB MERCH</a>
             <Link href="/iiserb">
-            <button className="h-[50px] w-full cursor-pointer text-white p-4 bg-blue-600">
-              Explore
-            </button>
+              <button className="h-[50px] w-full cursor-pointer text-white p-4 bg-blue-600">
+                Explore
+              </button>
             </Link>
           </div>
-          
+
           <div className="md:w-[50%] h-full w=[100%] bg-gray-200 flex flex-col justify-center items-center">
             <a className="text-4xl font-bold p-8">REGULARS</a>
             <Link href="/regulars">
-            <button className="h-[50px] text-white cursor-pointer w-full p-4 bg-blue-600">
-               Explore
-            </button>
+              <button className="h-[50px] text-white cursor-pointer w-full p-4 bg-blue-600">
+                Explore
+              </button>
             </Link>
           </div>
         </div>
@@ -116,14 +89,11 @@ export default function Example() {
                           <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                         </button>
                       </div>
-
-                     
                     </Dialog.Panel>
                   </Transition.Child>
                 </div>
               </Dialog>
             </Transition.Root>
-            
 
             <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
@@ -143,73 +113,47 @@ export default function Example() {
                 </h2>
 
                 <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-                  <div className="Categories divide-y mx-auto w-full max-w-md rounded-2xl  p-2 ">
-                  
-                    <Disclosure>
-                      {({ open }) => (
+                  <div className="Categories divide-y mx-auto w-full max-w-md rounded-2xl  ">
 
-                        <div>
-                          <Disclosure.Button className="w-full items-center flex justify-between p-4 rounded-lg bg-muted">
-                            Colors
-                            <ChevronRightIcon
-                              width={30}
-                              className={open ? "rotate-90 transform" : ""}
-                            />
-                          </Disclosure.Button>
-                          
-                                   
+                  <div className="p-4">
+                      <div className="font-bold text-xl py-4">Colors</div>
 
+                      <div className="flex gap-4">
+                        {product_details.color.map((clr: any, index: any) => {
+                          return (
+                            <div className="items-center p-2 border rounded-2xl border-black cursor-pointer hover:bg-muted">
+                              <Label htmlFor="option-one">{clr}</Label>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
 
-                          <Disclosure.Panel static className="flex flex-col p-4">
-                            {product_details && product_details.color.map((clr: any, index:any) => {
-                              return (
-                                <div key={index} className="flex  items-center">
-                                      <input type="checkbox" /><a className="mx-4 capitalize">{clr}</a>
-                                </div>
-                              );
-                            })}
-                          </Disclosure.Panel>
-                        </div>
-                      )}
-                    </Disclosure>
-                    
-                   
+                    <div className="p-4">
+                      <div className="font-bold text-xl py-4">Prices</div>
 
-
-                    <Disclosure as="div">
-                      {({ open }) => (
-
-                        <div>
-                          <Disclosure.Button className="w-full items-center flex justify-between p-4 bg-muted">
-                            Prices
-                            <ChevronRightIcon
-                              width={30}
-                              className={open ? "rotate-90 transform" : ""}
-                            />
-                          </Disclosure.Button>
-                          <Disclosure.Panel static className="flex flex-col p-4">
-                            {!product_details && <p>Loading</p>}
-                            {product_details.price.map((price: any, index:any) => {
-                              return (
-                                <div key={index} className="flex  items-center">
-                                  <input type="checkbox" />
-                                  <a className="mx-4">{price}</a>
-                                </div>
-                              );
-                            })}
-                          </Disclosure.Panel>
-                        </div>
-                      )}
-                    </Disclosure>
+                      <div className="flex gap-4">
+                        {product_details.price.map((price: any, index: any) => {
+                          return (
+                            <div className="items-center p-2 border rounded-2xl border-black cursor-pointer hover:bg-muted">
+                              <Label htmlFor="option-one">{price}</Label>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
                   <div className="md:col-span-3 border  ">
                     <div className="bg-white">
                       <div className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
                         <div className="   mt-6 grid grid-cols-1  gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 p-4">
-                          {product_list[0].map((product: any) => {
+                          {products_by_date.map((product: any) => {
                             return (
-                              <div className="border p-4 rounded-xl shadow-md" key={product._id}>
-                                <Products {...product} />
+                              <div
+                                className=" "
+                                key={product._id}
+                              >
+                                <Products key={product._id} {...product} />
                               </div>
                             );
                           })}
@@ -222,22 +166,26 @@ export default function Example() {
             </main>
           </div>
         </div>
-      </div>
+        
 
+
+      </div>
     </>
   );
 }
 
 async function getProducts() {
-
-  const resp = await fetch(`https://ecommerce-iiser.vercel.app/api/products`, {next: {revalidate: 10}});
-  const dresp = await fetch(`https://ecommerce-iiser.vercel.app/api/products/details`, {next: {revalidate: 1}});
+  const resp = await fetch(`https://ecommerce-iiser.vercel.app/api/products`, {
+    next: { revalidate: 10 },
+  });
+  const dresp = await fetch(
+    `https://ecommerce-iiser.vercel.app/api/products/details`,
+    { next: { revalidate: 1 } }
+  );
   const details = await dresp.json();
   const data = await resp.json();
   return [data.product, details.product];
 }
-
-
 
 // async function getDetails() {
 
@@ -246,5 +194,4 @@ async function getProducts() {
 //   return details.product;
 // }
 
-
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
