@@ -25,12 +25,12 @@ const sizes = ["XS", "S", "M", "L", "XL", "XXL"]
 
 
 
-const Id: React.FC<ProductCard> = ({ params }: any) => {
+const Id= ({params} : any) => {
   const { id } = params;
+
 
   const product = use(getProduct(id));
   const cart = useCart();
-  const [size, setSize] = useState("");
   const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
     cart.addItems(product);
