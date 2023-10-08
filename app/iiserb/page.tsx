@@ -35,20 +35,20 @@ const Iiserb =  () => {
 }
 
 
+async function getProduct() {
+
+
+  const dresp = await fetch(`https://ecommerce-iiser.vercel.app/api/products/iiserb`, { cache: "no-store", next: {revalidate: 1}});
+  const details = await dresp.json();
+  return details.product;
+}
+
+
+
 
 export default Iiserb
 
 
 
-
-async function getProduct() {
-
-
-    const dresp = await fetch(`https://ecommerce-iiser.vercel.app/api/products/iiserb`, { cache: "no-store", next: {revalidate: 1}});
-    const details = await dresp.json();
-    return details.product;
-  }
-  
-  
 
 export const dynamic = "force-dynamic"
