@@ -9,6 +9,7 @@ import Products from "@/app/components/Products";
 
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -18,9 +19,44 @@ export default function Example() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const product_list = use(getProducts());
-  const products_by_date = product_list[0].reverse()
-  // details are coming from server thats why late also no data on initial render
-  const product_details = product_list[1];
+  const products_by_date = product_list[0].reverse() // PRODUCTS SORTED BY DATE
+  const product_details = product_list[1]; // COLORS AND PRICES FOR SEARCH FILTERS
+
+  // const [open, setOpen] = useState([""])
+  const [formats, setFormats] = React.useState(() => ['']);
+  const handleFormat = (
+    event: React.MouseEvent<HTMLElement>,
+    newFormats: string[],
+  ) => {
+    setFormats(newFormats);    
+  };
+  let products = products_by_date;
+  if(formats.length > 1){
+  products = products_by_date.filter((p:any) => {
+    // console.log(formats, p)
+    return formats.includes(p.colorId) ? p : null;
+  })
+}
+
+  // console.log(formats)
+  
+
+
+
+
+
+
+  // function filter_checked(id:string){
+  //   setOpen(open => ({
+  //     ...open,
+  //     [id]: !open[id],
+  //   }));
+
+  // }
+  // function color_checked(c:string){
+  //    console.log(c)
+  // }
+
 
   return (
     <>
@@ -118,36 +154,48 @@ export default function Example() {
                   <div className="p-4">
                       <div className="font-bold text-xl py-4">Colors</div>
 
-                      <div className="flex gap-4">
-                        {product_details.color.map((clr: any, index: any) => {
+                      <div className="grid grid-cols-3 gap-4">
+                      <ToggleButtonGroup
+                      color="primary"
+                      value={formats}
+                      onChange={handleFormat}
+                      aria-label="text formatting"
+                      className="gap-3"
+                          >
+     
+                        {product_details.color.map((clr: string, index: any) => {
                           return (
-                            <div className="items-center p-2 border rounded-2xl border-black cursor-pointer hover:bg-muted">
-                              <Label htmlFor="option-one">{clr}</Label>
-                            </div>
+                            // <div  key={clr} className={`items-center p-2 border rounded-2xl border-black cursor-pointer hover:bg-muted `}>
+                              <ToggleButton className="" key={clr} value={clr} aria-label={clr} >
+
+                                <Label htmlFor="option-one" >{clr}</Label>
+                              </ToggleButton>
+                            // </div>
                           );
                         })}
+                        </ToggleButtonGroup>
                       </div>
                     </div>
 
-                    <div className="p-4">
+                    {/* <div className="p-4">
                       <div className="font-bold text-xl py-4">Prices</div>
-
                       <div className="flex gap-4">
-                        {product_details.price.map((price: any, index: any) => {
+                        {product_details.price.map((price: any) => {
                           return (
-                            <div className="items-center p-2 border rounded-2xl border-black cursor-pointer hover:bg-muted">
+                            <div key={price} className="items-center p-2 border rounded-2xl border-black cursor-pointer hover:bg-muted">
                               <Label htmlFor="option-one">{price}</Label>
                             </div>
                           );
                         })}
                       </div>
-                    </div>
+
+                    </div> */}
                   </div>
                   <div className="md:col-span-3 border  ">
                     <div className="bg-white">
                       <div className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
                         <div className="   mt-6 grid grid-cols-1  gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 p-4">
-                          {products_by_date.map((product: any) => {
+                          {products.map((product: any) => {
                             return (
                               <div
                                 className=" "
